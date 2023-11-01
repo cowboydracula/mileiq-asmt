@@ -1,0 +1,28 @@
+{
+    "TSConfigReference": "https://www.typescriptlang.org/tsconfig",
+  "TypeScript": "https://docs.cypress.io/guides/tooling/typescript-support#Install-TypeScript",
+  "compiler options": {
+    "baseUrl": "./",
+    "target": "ES2020",
+    "lib": [ "ES2020"],
+    "allowJs": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": false,
+    "strict": true,
+    "types": [ "cypress", "cypress-cucumber-preprocessor" ],
+    "paths": {
+      "@components/*": [ "components/*" ],
+      "@hooks/*": [ "hooks/*" ],
+      "@data/*": [ "data/*" ]
+    }
+  },
+  "include": [ "**/cypress", "**/*.ts", "**/*.tsx", "currents.config.js" ],
+  "exclude": [ "node_modules"]
+}

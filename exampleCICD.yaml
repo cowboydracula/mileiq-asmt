@@ -1,0 +1,63 @@
+name: MileIQ Example CI/CD Pipeline Integration Example
+
+on:
+  push:
+    branches: [master, staging-test]
+  pull_request:
+    branches: [main, staging-test]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Setup .NET
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "6.0.x"
+
+      # Restore .NET dependencies
+      - name: Restore .NET dependencies
+        run: dotnet restore
+
+      # Build
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      # Run .NET tests (Unit tests or other .NET tests)
+      - name: Run .NET tests
+        run: dotnet test --no-restore --verbosity normal
+
+      # Setup Node.js for Yarn (Assuming Cypress tests need Node.js)
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14" # Specify your Node.js version here
+
+      # Install Yarn
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      # Install Cypress dependencies using Yarn
+      - name: Install Cypress dependencies
+        run: yarn install
+
+      # Cypress E2E Tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn start # Command to start your ASP.NET project
+          wait-on: "http://127.0.0.1:9093" # Replace with the correct URL
+          record: true
+          parallel: true
+          ci-build-id: e2e-tests-${{ github.run_id }}
+          group: "E2E Tests"
+          config: baseUrl=http://127.0.0.1:9093,projectId=unq-project-id
+        env:
+          # Set environment variables
+          CYPRESS_RECORD_KEY: ${{ secrets.UNQ_RECORD_KEY }}
+          CYPRESS_BASE_URL: http://samplewithport:5000
+          CYPRESS_RUN_URL: "http://127.0.0.1:8085"
