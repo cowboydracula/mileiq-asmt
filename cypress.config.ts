@@ -2,7 +2,7 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   e2e: {
-    baseUrl: 'https://demo.obeden.com',
+    baseUrl: 'https://dashboard.mileiq.com/signup?',
     supportFile: 'cypress/support/index.ts',
     specPattern: 'cypress/e2e/**/*.feature',
     video: true,

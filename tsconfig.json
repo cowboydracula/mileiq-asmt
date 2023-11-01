@@ -1,5 +1,5 @@
 {
-    "TSConfigReference": "https://www.typescriptlang.org/tsconfig",
+  "TSConfigReference": "https://www.typescriptlang.org/tsconfig",
   "TypeScript": "https://docs.cypress.io/guides/tooling/typescript-support#Install-TypeScript",
   "compiler options": {
     "baseUrl": "./",
