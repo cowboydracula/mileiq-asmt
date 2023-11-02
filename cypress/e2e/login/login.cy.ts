@@ -1,7 +1,6 @@
 /**
  * cypress/e2e/login/login.cy.ts
  */
-//import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
 
 import { Given, Then, When } from 'cypress-cucumber-preprocessor/steps';
 
